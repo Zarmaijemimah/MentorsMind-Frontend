@@ -4,8 +4,7 @@ import LiveRegion from './components/a11y/LiveRegion';
 import AccessibilityPanel from './components/a11y/AccessibilityPanel';
 import MentorOnboarding from './components/onboarding/MentorOnboarding';
 import LearnerOnboarding from './pages/LearnerOnboarding';
-import MentorDashboard from './pages/MentorDashboard';
-import MentorSearch from './pages/MentorSearch';
+import MentorWallet from './pages/MentorWallet';
 import RatingBreakdown from './components/reviews/RatingBreakdown';
 import ReviewForm from './components/reviews/ReviewForm';
 import ReviewList from './components/reviews/ReviewList';
@@ -18,8 +17,7 @@ import MetricCard from './components/charts/MetricCard';
 import SearchPage from './pages/SearchPage';
 
 function App() {
-  const [view, setView] = useState<'onboarding' | 'learner' | 'dashboard' | 'search' | 'reviews' | 'analytics'>('onboarding');
-  const [view, setView] = useState<'onboarding' | 'learner' | 'reviews' | 'analytics' | 'search'>('search');
+  const [view, setView] = useState<'onboarding' | 'learner' | 'wallet' | 'reviews' | 'analytics'>('onboarding');
   const [showForm, setShowForm] = useState(false);
   const [a11yOpen, setA11yOpen] = useState(false);
   const [announcement, setAnnouncement] = useState('');
@@ -77,20 +75,12 @@ function App() {
               Learner Onboarding
             </button>
             <button
-              onClick={() => setView('dashboard')}
+              onClick={() => setView('wallet')}
               className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${
-                view === 'dashboard' ? 'bg-white shadow-sm text-stellar' : 'text-gray-400 hover:text-gray-600'
+                view === 'wallet' ? 'bg-white shadow-sm text-stellar' : 'text-gray-400 hover:text-gray-600'
               }`}
             >
-              Mentor Dashboard
-            </button>
-            <button
-              onClick={() => setView('search')}
-              className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${
-                view === 'search' ? 'bg-white shadow-sm text-stellar' : 'text-gray-400 hover:text-gray-600'
-              }`}
-            >
-              Find Mentors
+              Wallet
             </button>
             <button
               onClick={() => setView('analytics')}
@@ -169,6 +159,8 @@ function App() {
           <MentorOnboarding />
         ) : view === 'learner' ? (
           <LearnerOnboarding />
+        ) : view === 'wallet' ? (
+          <MentorWallet />
         ) : view === 'dashboard' ? (
           <MentorDashboard />
         ) : view === 'search' ? (
